@@ -1,0 +1,89 @@
+<br>
+    <br> <br><br><br>
+    <div class="row">
+    
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-round btn-sm btn-success" (click)="open(mymodal1)">Add reclamation</button>
+            <br><br>
+            <ng-template #mymodal1 let-modal1>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title" >Add reclamation</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+                        <span aria-hidden="true" (click)="cancel()">×</span>
+                    </button>
+    
+                </div>
+                <div class="center">
+                <form>
+                    <div class="row" class="col-md-6">
+                        <input type="text" placeholder="reclamation" [(ngModel)]="reclamation.Reclamations"
+                            [ngModelOptions]="{standalone : true}">
+                    </div>
+                    <div class="row" class="col-md-6">
+                        <input type="number" placeholder="creating_date" [(ngModel)]="reclamation.creating_date"
+                            [ngModelOptions]="{standalone : true}">
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-success" (click)="addReclamation(reclamation, user1_Id , user2_id)" (click)="modal1.close('Save click')">Add</button> 
+                    <button type="button" class="btn btn-info" (click)="modal1.close('Save click')" >Cancel</button>
+                </form>
+            </div>
+            </ng-template>
+            <div class="row">
+                <div class="card" class="text-center">
+                    <table class="table">
+                        <thead style="background-color: rgb(192, 183, 183);">
+                            <th>reclamation</th>
+                            <th>creating_date</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let r of listReclamation'>
+                                <td>{{r.reclamation}}</td>
+                                <td>{{r.creating_date}}</td>
+                                <td><button type="button" class="btn btn-outline-primary"
+                                        (click)="open(mymodal)">edit</button>
+                                    <ng-template #mymodal let-modal>
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="modal-basic-title">Edit</h4>
+                                            <button type="button" class="close" aria-label="Close"
+                                                (click)="modal.dismiss('Cross click')">
+                                                <span aria-hidden="true" (click)="cancel()">×</span>
+    
+                                            </button>
+    
+                                        </div>
+                                        <div>
+                                        <form>
+                                            <div class="modal-body">
+    
+                                                <div class="row" class="col-md-5">
+                                                    <label>reclamation</label>
+                                                    <input type="text" [(ngModel)]="r.reclamation" [ngModelOptions]="{standalone : true}" />
+                                                </div>
+                                                <div class="row" class="col-md-5">
+                                                    <label>creating_date</label>
+                                                    <input type="number" [(ngModel)]="r.creating_date" [ngModelOptions]="{standalone : true}" />
+                                                </div>
+                                            </div>
+    
+                                            <div class="modal-footer">
+    
+                                                <button type="button" class="btn btn-info"
+                                                    (click)="modal.close('Save click')" (click)="cancel()">Cancel</button>
+                                                <button class="btn btn-success"(click)="updateReclamtion(r)" (click)="modal.close('Save click')">Validate</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    </ng-template>
+                                    <button type="button" class="btn btn-outline-danger"
+                                        (click)="deleteReclamtion(r.Idreclamation)">delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
